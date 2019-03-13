@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-2">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo2.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="main clearfix">
+				<div class="bb-custom-wrapper">
+					<div id="bb-bookblock" class="bb-bookblock">
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-0.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-1.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-2.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-3.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-4.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-5.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-6.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-7.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-8.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-9.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-10.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-11.jpg" alt="image01"/>
+						</div>
+						<div class="bb-item">
+							<img width="560px" height="600px" class="bb-custom-img" src="images/78/78-12.jpg" alt="image01"/>
+						</div>
+					</div>
+					<nav>
+						<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+						<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+					</nav>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/jquery.bookblock.js"></script>
+		<script>
+			var Page = (function() {
+
+				var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' )
+					},
+					init = function() {
+						config.$bookBlock.bookblock( {
+							orientation : 'horizontal',
+							speed : 800
+						} );
+						initEvents();
+					},
+					initEvents = function() {
+
+						var $slides = config.$bookBlock.children();
+
+						// add navigation events
+						config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+							return false;
+						} );
+
+						config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+							return false;
+						} );
+
+						// add keyboard events
+						$( document ).keydown( function(e) {
+							var keyCode = e.keyCode || e.which,
+								arrow = {
+									left : 37,
+									up : 38,
+									right : 39,
+									down : 40
+								};
+
+							switch (keyCode) {
+								case arrow.up:
+									config.$bookBlock.bookblock( 'prev' );
+									e.preventDefault();
+									break;
+								case arrow.down:
+									config.$bookBlock.bookblock( 'next' );
+									e.preventDefault();
+									break;
+							}
+
+						} );
+					};
+
+					return { init : init };
+
+			})();
+		</script>
+		<script>
+				Page.init();
+		</script>
+	</body>
+</html>
